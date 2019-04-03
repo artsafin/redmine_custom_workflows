@@ -1,0 +1,5 @@
+<p class="buttons cwf-buttons">
+<% CwfTrigger.where(position: position).each do |trigger| %>
+  <%= link_to trigger.title, '#', :class => trigger.css_classes, :data => {id: trigger.id, issue_id: @issue.id} %>
+<% end %>
+</p>

@@ -32,4 +32,6 @@ RedmineApp::Application.routes.draw do
   get '/custom_workflows/:id/export', :to => 'custom_workflows#export', :as => 'export_custom_workflow'
   post '/custom_workflows/:id/change_status', :to => 'custom_workflows#change_status', :as => 'custom_workflow_status'
   put '/custom_workflows/:id/reorder', :to => 'custom_workflows#reorder'
+
+  post '/button/trigger/:id', :to => 'button#trigger'
 end
