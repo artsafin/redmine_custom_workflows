@@ -24,11 +24,19 @@ module RedmineCustomWorkflows
   class Hooks < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context)
       stylesheet_link_tag :style, plugin: 'redmine_custom_workflows'
-      javascript_include_tag :cwf, plugin: 'redmine_custom_workflows'
+      javascript_include_tag :trigger_workflows, plugin: 'redmine_custom_workflows'
     end
+  end
 
-    render_on :view_issues_show_details_bottom, partial: 'custom_workflows/buttons', locals: {position: "details_bottom"}
-    render_on(:view_issues_show_description_bottom, partial: 'custom_workflows/buttons', locals: {position: 'description_bottom'})
+  class Hooks < Redmine::Hook::ViewListener
+    render_on(
+        :view_issues_show_details_bottom,
+        partial: 'trigger_workflows/buttons', locals: {position: "details_bottom"}
+    )
+    render_on(
+        :view_issues_show_description_bottom,
+        partial: 'trigger_workflows/buttons', locals: {position: 'description_bottom'}
+    )
   end
 
 end

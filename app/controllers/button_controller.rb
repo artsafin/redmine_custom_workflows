@@ -3,26 +3,28 @@ class ButtonController < ApplicationController
     id = params[:id]
     issue_id = params[:issue_id]
 
-    Rails.logger.info "Trigger WF: id=#{id} issue_id=#{issue_id}"
-
-    trigger = CwfTrigger.find(id)
-
-    if trigger.nil?
-      raise ActionController::RoutingError.new("Specified trigger not found: #{id}")
-    end
-
-    cwf = CustomWorkflow.find(trigger.cwf_id)
-
-    if cwf.nil?
-      raise ActionController::RoutingError.new("Specified workflow not found: #{id}")
-    end
+    Rails.logger.info "=== Trigger: id=#{id} issue_id=#{issue_id}"
+    Rails.logger.flush
 
     issue = Issue.find(issue_id)
+    trigger = Trigger.find(id)
 
-    wf_result = CustomWorkflow.run_custom_workflows(:issue, issue, :after_save)
+    wf = trigger.trigger_workflow
+    mod = wf.trigger_workflow_module
+
+    helper_code = ButtonHelper.load_code mod, 'helper'
+    helper_code.add_comment "Module `#{mod.name}` (#{mod.id}) triggered by `#{trigger.title}` (#{trigger.id})"
+
+    wf_code = ButtonHelper.load_code wf, 'on_click'
+    wf_code.add_comment "Workflow `#{wf.name}` (#{wf.id}) triggered by `#{trigger.title}` (#{trigger.id})"
+
+    res = helper_code.eval issue
+    res &= wf_code.eval issue
+
+    after_click = res ? wf.after_click_success : wf.after_click_failure
 
     respond_to do |format|
-      format.json { render json: {sucess: true, wf_result: wf_result} }
+      format.json { render json: {success: res, after_click: after_click} }
     end
   end
 end
