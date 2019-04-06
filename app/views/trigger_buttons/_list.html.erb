@@ -1,0 +1,34 @@
+<% if triggers.any? %>
+  <table class="custom-workflows list">
+    <thead>
+    <tr>
+      <% unless local_assigns[:skip_parent_link] %>
+        <th><%= l(:field_workflow) %></th>
+      <% end %>
+      <th><%= l(:field_title) %></th>
+      <th><%= l(:field_position) %></th>
+      <th><%= l(:field_css_classes) %></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% triggers.each do |b| %>
+      <tr>
+        <% unless local_assigns[:skip_parent_link] %>
+          <td><%= link_to(b.trigger_workflow.name, edit_trigger_workflow_path(b.trigger_workflow)) %></td>
+        <% end %>
+        <td><%= link_to(b.title, edit_trigger_button_path(b)) %></td>
+        <td><%= l(b.position) %></td>
+        <td><%= b.css_classes %></td>
+        <td>
+          <%= link_to(l(:button_delete), trigger_button_path(b), :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :confirm => l(:text_are_you_sure), :method => :delete) %>
+          <br>
+          <%= link_to(l(:button_edit), edit_trigger_button_path(b), :class => 'icon icon-edit') %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

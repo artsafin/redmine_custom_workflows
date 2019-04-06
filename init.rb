@@ -41,4 +41,7 @@ require_dependency File.dirname(__FILE__) + '/lib/redmine_custom_workflows.rb'
 Redmine::MenuManager.map :admin_menu do |menu|
   menu.push :custom_workflows, { controller: 'custom_workflows', action: 'index'},
        caption: :label_custom_workflow_plural, html: { class: 'icon icon-workflows'}
+
+  menu.push :trigger_workflows, { controller: 'trigger_workflows', action: 'index'},
+       caption: "Trigger workflows", html: { class: 'icon icon-workflows'}
 end

@@ -1,0 +1,9 @@
+<div style="width: 50%">
+
+  <%= f.select :trigger_workflow_id, options_for_select(TriggerWorkflow.all.map{|s|[s.name, s.id]}) %>
+  <p><%= f.text_field :title, :required => true, :size => 50 %></p>
+  <%= f.select :position, options_for_select([['Under details', :details_bottom], ["Under description", :description_bottom]]) %>
+  <p><%= f.number_field :priority, :required => true %></p>
+  <p><%= f.text_field :css_classes %></p>
+
+</div>

@@ -1,0 +1,7 @@
+.trigger_workflows_form label {
+    display: block;
+}
+
+.trigger_workflows_form input[type=text], .trigger_workflows_form textarea {
+    width: 100%;
+}

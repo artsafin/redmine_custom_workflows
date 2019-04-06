@@ -1,0 +1,39 @@
+<% html_title(l(:trigger_modules)) -%>
+
+<div class="contextual">
+  <%= link_to l(:trigger_workflows), trigger_workflows_path, :class => 'icon icon-import' %>
+  <%= link_to l(:trigger_buttons), trigger_buttons_path, :class => 'icon icon-add' %>
+</div>
+
+<h2><%=l(:trigger_modules)%></h2>
+
+<div class="autoscroll">
+  <% if @modules.any? %>
+    <table class="custom-workflows list">
+      <thead>
+      <tr>
+        <th><%= l(:field_name) %></th>
+        <th><%= l(:field_comment) %></th>
+        <th><%= l(:is_file) %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @modules.each do |m| %>
+        <tr>
+          <td><%= link_to(m.name, edit_trigger_module_path(m)) %></td>
+          <td><%= m.comment %></td>
+          <td><%= m.is_file ? m.helper : l(:trigger_not_file) %></td>
+          <td>
+            <%= link_to(l(:button_delete), trigger_module_path(m), :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :confirm => l(:text_are_you_sure), :method => :delete) %>
+            <br>
+            <%= link_to(l(:button_edit), edit_trigger_module_path(m), :class => 'icon icon-edit') %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% end %>
+</div>

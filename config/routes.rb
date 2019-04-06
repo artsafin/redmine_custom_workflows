@@ -27,6 +27,8 @@ RedmineApp::Application.routes.draw do
     end
   end
 
+  resources :trigger_workflows, :trigger_buttons, :trigger_modules
+
   post '/custom_workflows/import', :to => 'custom_workflows#import', :as => 'import_custom_workflow'
   post '/custom_workflows/:id', :to => 'custom_workflows#update'
   get '/custom_workflows/:id/export', :to => 'custom_workflows#export', :as => 'export_custom_workflow'

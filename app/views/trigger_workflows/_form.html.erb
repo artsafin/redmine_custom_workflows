@@ -1,0 +1,12 @@
+<div style="width: 50%">
+
+  <%= f.select :trigger_workflow_module_id, options_for_select(TriggerWorkflowModule.all.map{|s|[s.name, s.id]}) %>
+  <p><%= f.text_field :name, :required => true, :size => 50 %></p>
+  <p><%= f.text_area :comment, :required => false, :cols => 100 %></p>
+  <p><%= f.check_box :is_file %></p>
+  <p><%= f.check_box :is_enabled %></p>
+  <p><%= f.text_area :on_click, :required => false, :cols => 100, :rows => 20 %></p>
+  <p><%= f.text_area :after_click_success, :required => false, :cols => 100, :rows => 10 %></p>
+  <p><%= f.text_area :after_click_failure, :required => false, :cols => 100, :rows => 10 %></p>
+
+</div>
