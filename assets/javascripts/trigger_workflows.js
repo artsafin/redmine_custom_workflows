@@ -10,10 +10,14 @@ $(() => {
             url: `/button/trigger/${id}?issue_id=${issue_id}`,
             dataType: 'json',
             success: (response) => {
-                console.log('Trigger:', response);
+                console.log('Trigger success', response);
 
                 if (response.after_click) {
                     eval(response.after_click);
+                } else if (response.success) {
+                    location.reload();
+                } else if (response.errors) {
+                    alert(response.errors.base.join(' '))
                 }
             }
         });
