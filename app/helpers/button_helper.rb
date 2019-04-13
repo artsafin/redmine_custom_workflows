@@ -13,7 +13,7 @@ module ButtonHelper
       @comment += delimiter + comment
     end
 
-    def eval(object)
+    def eval(object, &block)
       log_suffix = "#{@comment} on object `#{object.id}`"
 
       if @source.blank?
@@ -23,7 +23,8 @@ module ButtonHelper
       end
 
       Rails.logger.info "=== #{log_suffix}: executing code #{@source}..."
-      object.instance_eval(@source)
+      eval_result = object.instance_eval(@source)
+      yield eval_result if block_given?
       Rails.logger.info "=== #{log_suffix}: finished executing code #{@source}..."
       true
 

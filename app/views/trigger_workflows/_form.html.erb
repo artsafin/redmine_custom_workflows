@@ -6,9 +6,10 @@
     <%= f.text_area :comment, :required => false, :cols => 100 %>
     <%= f.check_box :is_file %>
     <%= f.check_box :is_enabled %>
+    <%= f.text_area :show_condition, :required => false, :cols => 100, :rows => 5 %>
     <%= f.text_area :on_click, :required => false, :cols => 100, :rows => 20 %>
-    <%= f.text_area :after_click_success, :required => false, :cols => 100, :rows => 10 %>
-    <%= f.text_area :after_click_failure, :required => false, :cols => 100, :rows => 10 %>
+    <%= f.text_area :after_click_success, :required => false, :cols => 100, :rows => 5 %>
+    <%= f.text_area :after_click_failure, :required => false, :cols => 100, :rows => 5 %>
   </div>
 
 </div>

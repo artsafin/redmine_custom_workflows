@@ -1,6 +1,8 @@
 <br>
 <p class="buttons trigger-workflows-buttons">
-<% Trigger.positioned_at(position).each do |trigger| %>
-  <%= link_to trigger.title, '#', :class => trigger.css_classes, :data => {id: trigger.id, issue_id: @issue.id} %>
-<% end %>
+  <% Trigger.positioned_at(position).each do |trigger| %>
+    <% if trigger.shown_for(@issue) %>
+      <%= link_to trigger.title, '#', :class => trigger.css_classes, :data => {id: trigger.id, issue_id: @issue.id} %>
+    <% end %>
+  <% end %>
 </p>

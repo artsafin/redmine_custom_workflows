@@ -7,4 +7,8 @@ class Trigger < ActiveRecord::Base
   def to_s
     title
   end
+
+  def shown_for(issue)
+    trigger_workflow.shown_for issue
+  end
 end

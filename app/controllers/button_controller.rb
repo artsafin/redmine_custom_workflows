@@ -15,7 +15,7 @@ class ButtonController < ApplicationController
     helper_code = ButtonHelper.load_code mod, 'helper'
     helper_code.add_comment "Module `#{mod.name}` (#{mod.id}) triggered by `#{trigger.title}` (#{trigger.id})"
 
-    wf_code = ButtonHelper.load_code wf, 'on_click'
+    wf_code = wf.code
     wf_code.add_comment "Workflow `#{wf.name}` (#{wf.id}) triggered by `#{trigger.title}` (#{trigger.id})"
 
     res = helper_code.eval issue

@@ -76,6 +76,7 @@ class TriggerWorkflowsController < ApplicationController
     model.is_file = params[:trigger_workflow][:is_file] == '1'
     model.is_enabled = params[:trigger_workflow][:is_enabled] == '1'
     model.on_click = params[:trigger_workflow][:on_click]
+    model.show_condition = params[:trigger_workflow][:show_condition]
     model.after_click_success = params[:trigger_workflow][:after_click_success]
     model.after_click_failure = params[:trigger_workflow][:after_click_failure]
     model
