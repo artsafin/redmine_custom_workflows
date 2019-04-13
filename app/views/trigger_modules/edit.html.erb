@@ -2,7 +2,7 @@
 
 <%= error_messages_for 'module' %>
 
-<%= labelled_form_for @module, url: edit_trigger_module_path(@module), html: {class: 'trigger_workflows_form'} do |f| %>
+<%= labelled_form_for @module, url: trigger_module_path(@module), html: {class: 'trigger_workflows_form'} do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <%= submit_tag l(:button_save) %>
 <% end %>

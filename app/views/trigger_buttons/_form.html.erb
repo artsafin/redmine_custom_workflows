@@ -1,9 +1,30 @@
 <div style="width: 50%">
 
-  <%= f.select :trigger_workflow_id, options_for_select(TriggerWorkflow.all.map{|s|[s.name, s.id]}) %>
-  <p><%= f.text_field :title, :required => true, :size => 50 %></p>
-  <%= f.select :position, options_for_select([['Under details', :details_bottom], ["Under description", :description_bottom]]) %>
-  <p><%= f.number_field :priority, :required => true %></p>
-  <p><%= f.text_field :css_classes %></p>
+  <p>
+    <%= f.select :trigger_workflow_id, TriggerWorkflow.all.map {|s| [s.name, s.id]}, required: true %>
+    <%= f.text_field :title, :required => true, :size => 50 %>
+    <%= f.select :position, [[l(:details_bottom), :details_bottom], [l(:description_bottom), :description_bottom]], selection:@button.position %>
+    <%= f.number_field :priority, :required => true %>
+  </p>
+
+  <%
+    icons = %w(icon-actions icon-add icon-add-bullet icon-arrow-right icon-attachment icon-cancel icon-changeset icon-checked icon-close icon-comment icon-comments icon-copy icon-custom-fields icon-del icon-document icon-download icon-duplicate icon-edit icon-email icon-email-add icon-email-disabled icon-error icon-fav icon-fav-off icon-file icon-folder icon-group icon-groupanonymous icon-groupnonmember icon-help icon-history icon-issue icon-issue-closed icon-issue-edit icon-issue-note icon-link-break icon-list icon-lock icon-locked icon-magnifier icon-message icon-move icon-multiple icon-news icon-not-ok icon-ok icon-only icon-package icon-passwd icon-plugins icon-project icon-projects icon-reload icon-reply icon-report icon-roles icon-save icon-server-authentication icon-settings icon-shared icon-stats icon-sticky icon-summary icon-test icon-time icon-time-add icon-time-entry icon-unlock icon-user icon-warning icon-wiki-page icon-workflows icon-zoom-in icon-zoom-out)
+  %>
+
+  <%= field_set_tag l(:trigger_buttons_icons) do %>
+    <p id="trigger_buttons_icons" class="buttons">
+      <% icons.each do |icon| %>
+        <a style="display: inline-block" href="#" class="icon <%= icon %>"><%= icon.split('-').drop(1).join(' ').titlecase %></a>
+      <% end %>
+      <%= f.text_field :css_classes %>
+    </p>
+  <% end %>
 
 </div>
+
+<script>
+    $('#trigger_buttons_icons a').click((e) => {
+        $('#trigger_css_classes').val(e.target.className);
+        e.preventDefault();
+    });
+</script>

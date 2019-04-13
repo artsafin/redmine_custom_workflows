@@ -1,4 +1,9 @@
-<h2><%= link_to l(:trigger_workflows), trigger_workflows_path %> &#187; <%= @workflow %></h2>
+<h2>
+  <%= link_to l(:trigger_module) + " '#{@workflow.trigger_workflow_module}'", edit_trigger_module_path(@workflow.trigger_workflow_module) %>
+  (<%= link_to l(:trigger_modules_all), trigger_modules_path %>)
+  &#187; <%= @workflow %>
+  (<%= link_to l(:trigger_workflows_all), trigger_workflows_path %>)
+</h2>
 
 <h3><%= l(:trigger_buttons) %></h3>
 

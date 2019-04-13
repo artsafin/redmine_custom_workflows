@@ -104,3 +104,28 @@ en:
   custom_workflow_observable_group_users: "Group Users"
   custom_workflow_observable_time_entry: "Time Entry"
   custom_workflow_observable_version: "Version"
+
+  field_comment: Comment
+  field_css_classes: CSS Classes
+  field_module: Module
+  field_name: Name
+  field_position: Position
+  field_button: Button
+  field_workflow: Workflow
+  is_enabled: Enabled
+  is_file: File
+  trigger_buttons_all: all
+  trigger_buttons: Trigger Buttons
+  new_trigger_button: New button
+  trigger_modules_all: all
+  trigger_modules: Trigger Modules
+  trigger_module: Module
+  trigger_workflows_all: all
+  trigger_workflows: Trigger Workflows
+  trigger_workflow: Workflow
+  trigger_workflow_empty: No workflow assigned
+  new_trigger_workflow: New workflow
+  trigger_not_file: Inline code
+  trigger_buttons_icons: Icon
+  description_bottom: Under description
+  details_bottom: Under details

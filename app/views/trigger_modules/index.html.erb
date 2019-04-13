@@ -9,7 +9,7 @@
 
 <div class="autoscroll">
   <% if @modules.any? %>
-    <table class="custom-workflows list">
+    <table class="trigger-modules list">
       <thead>
       <tr>
         <th><%= l(:field_name) %></th>
@@ -25,8 +25,8 @@
           <td><%= m.comment %></td>
           <td><%= m.is_file ? m.helper : l(:trigger_not_file) %></td>
           <td>
-            <%= link_to(l(:button_delete), trigger_module_path(m), :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :confirm => l(:text_are_you_sure), :method => :delete) %>
-            <br>
+            <%#= link_to(l(:button_delete), trigger_module_path(m), :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :confirm => l(:text_are_you_sure), :method => :delete) %>
+<!--            <br>-->
             <%= link_to(l(:button_edit), edit_trigger_module_path(m), :class => 'icon icon-edit') %>
           </td>
         </tr>

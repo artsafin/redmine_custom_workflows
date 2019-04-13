@@ -1,0 +1,13 @@
+<h2>
+  <%= link_to l(:trigger_workflows), trigger_workflows_path %>
+  &#187; <%= l(:new_trigger_workflow) %>
+</h2>
+
+<%= error_messages_for 'workflow' %>
+
+<%= labelled_form_for @workflow, html: {class: 'trigger_workflows_form'} do |f| %>
+<%= render :partial => 'form', :locals => {:f => f} %>
+<%= submit_tag l(:button_create) %>
+<% end %>
+
+<% html_title(l(:trigger_workflow), l(:new_trigger_workflow), l(:label_administration)) -%>

@@ -5,11 +5,15 @@
   <%= link_to l(:trigger_buttons), trigger_buttons_path, :class => 'icon icon-add' %>
 </div>
 
+<p>
+  <%= link_to l(:new_trigger_workflow), new_trigger_workflow_path, :class => 'icon icon-add' %>
+</p>
+
 <h2><%=l(:trigger_workflows)%></h2>
 
 <div class="autoscroll">
   <% if @workflows.any? %>
-    <table class="custom-workflows list">
+    <table class="trigger-workflows list">
       <thead>
       <tr>
         <th><%= l(:field_module) %></th>

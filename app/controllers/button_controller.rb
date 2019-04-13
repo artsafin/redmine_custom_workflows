@@ -24,7 +24,7 @@ class ButtonController < ApplicationController
     after_click = res ? wf.after_click_success : wf.after_click_failure
 
     respond_to do |format|
-      format.json { render json: {success: res, after_click: after_click} }
+      format.json { render json: {success: res, after_click: after_click, errors: issue.errors} }
     end
   end
 end

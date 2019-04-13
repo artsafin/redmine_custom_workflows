@@ -1,13 +1,12 @@
 <% if triggers.any? %>
-  <table class="custom-workflows list">
+  <table class="trigger-buttons list">
     <thead>
     <tr>
       <% unless local_assigns[:skip_parent_link] %>
         <th><%= l(:field_workflow) %></th>
       <% end %>
-      <th><%= l(:field_title) %></th>
+      <th><%= l(:field_button) %></th>
       <th><%= l(:field_position) %></th>
-      <th><%= l(:field_css_classes) %></th>
       <th></th>
     </tr>
     </thead>
@@ -15,11 +14,20 @@
     <% triggers.each do |b| %>
       <tr>
         <% unless local_assigns[:skip_parent_link] %>
-          <td><%= link_to(b.trigger_workflow.name, edit_trigger_workflow_path(b.trigger_workflow)) %></td>
+          <td>
+            <% if b.trigger_workflow %>
+              <%= link_to(b.trigger_workflow.name, edit_trigger_workflow_path(b.trigger_workflow)) %>
+            <% else %>
+              <%= l(:trigger_workflow_empty) %>
+            <% end %>
+          </td>
         <% end %>
-        <td><%= link_to(b.title, edit_trigger_button_path(b)) %></td>
+        <td>
+          <p class="buttons">
+            <%= link_to(b.title, edit_trigger_button_path(b), class: b.css_classes) %>
+          </p>
+        </td>
         <td><%= l(b.position) %></td>
-        <td><%= b.css_classes %></td>
         <td>
           <%= link_to(l(:button_delete), trigger_button_path(b), :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :confirm => l(:text_are_you_sure), :method => :delete) %>
           <br>

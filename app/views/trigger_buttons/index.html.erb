@@ -7,6 +7,10 @@
 
 <h2><%=l(:trigger_buttons)%></h2>
 
+<p>
+  <%= link_to l(:new_trigger_button), new_trigger_button_path, :class => 'icon icon-add' %>
+</p>
+
 <div class="autoscroll">
   <%= render partial: 'trigger_buttons/list', locals: {triggers: @triggers} %>
 </div>

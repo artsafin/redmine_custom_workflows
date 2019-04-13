@@ -13,7 +13,7 @@ class TriggerModulesController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html { redirect_to edit_trigger_workflow_modules_path }
+      format.html { redirect_to edit_trigger_module_path }
     end
   end
 
@@ -22,15 +22,14 @@ class TriggerModulesController < ApplicationController
 
   def update
     respond_to do |format|
-      @module.trigger_workflow_id = params[:trigger][:trigger_workflow_id]
-      @module.title = params[:trigger][:title]
-      @module.position = params[:trigger][:position]
-      @module.priority = params[:trigger][:priority]
-      @module.css_classes = params[:trigger][:css_classes]
+      @module.name = params[:trigger_workflow_module][:name]
+      @module.comment = params[:trigger_workflow_module][:comment]
+      @module.is_file = params[:trigger_workflow_module][:is_file] == '1'
+      @module.helper = params[:trigger_workflow_module][:helper]
 
       if params.has_key?(:commit) && @module.save
         flash[:notice] = l(:notice_successful_update)
-        format.html { redirect_to(trigger_workflow_modules_path(@module)) }
+        format.html { redirect_to(edit_trigger_module_path(@module)) }
       else
         format.html { render action: :edit }
       end
